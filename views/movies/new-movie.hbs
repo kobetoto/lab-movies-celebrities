@@ -1,0 +1,32 @@
+<h2>new movie heading</h2>
+
+<form method="POST">
+  <label>
+    Title
+    <input type="text" name="title" required />
+  </label>
+
+  <label>
+    Genre
+    <input type="text" name="genre" />
+  </label>
+
+  <label>
+    Plot
+    <input type="text" name="plot" />
+  </label>
+
+  <label for="cast">Cast</label>
+
+  <select name="cast" id="cast" multiple>
+    {{#each allCelebrities}}
+      <option value="chosenCast">{{name}}</option>
+    {{/each}}
+
+  </select>
+
+
+  <p>
+    <button>Create a movie</button>
+  </p>
+</form>
