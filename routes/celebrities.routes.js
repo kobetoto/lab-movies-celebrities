@@ -5,7 +5,7 @@ const Celebrity = require("../models/Celebrity.model");
 // all your routes here
 
 router.get("/celebrities/create", function (req, res, next) {
-  res.render("../views/celebrities/new-celebrity");
+  res.render("celebrities/new-celebrity");
 });
 
 router.post("/celebrities/create", function (req, res, next) {
@@ -18,27 +18,27 @@ router.post("/celebrities/create", function (req, res, next) {
   })
     .save()
     .then(function (newCelebrityFromDB) {
-      res.render("../views/celebrities/celebrities.hbs");
+      res.redirect("/celebrities"); //si c'est req.redirect, il doit etre un route, il faut un slash au debut/
     })
     .catch((err) => {
       console.log("erreur lorsque de la creation d un celebrity");
-      res.render("../views/celebrities/new-celebrity");
+      res.render("celebrities/new-celebrity"); //si c'est req.render, nom du fichier hbs en partant de views, pas de slash au debut
     });
+});
 
-  router.get("/celebrities/celbrities", function (req, res, next) {
-    Celebrity.find()
-      .then(function (allCelebritiesFromDB) {
-        console.log("All celebrities", allCelebritiesFromDB);
-        res.render("../views/celebrities/celebrities.hbs"),
-          {
-            allCelebrities: allCelebritiesFromDB,
-          };
-      })
-      .catch((err) => {
-        console.log("oops", err);
-        next(err);
-      });
-  });
+router.get("/celebrities", function (req, res, next) {
+  Celebrity.find()
+    .then(function (allCelebritiesFromDB) {
+      console.log("All celebrities", allCelebritiesFromDB);
+      res.render("celebrities/celebrities"),
+        {
+          allCelebrities: allCelebritiesFromDB,
+        };
+    })
+    .catch((err) => {
+      console.log("oops", err);
+      next(err);
+    });
 });
 
 module.exports = router;
