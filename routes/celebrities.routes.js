@@ -9,7 +9,7 @@ router.get("/celebrities/create", function (req, res, next) {
 });
 
 router.post("/celebrities/create", function (req, res, next) {
-  req.body;
+  
 
   new Celebrity({
     name: req.body.name,
@@ -29,11 +29,10 @@ router.post("/celebrities/create", function (req, res, next) {
 router.get("/celebrities", function (req, res, next) {
   Celebrity.find()
     .then(function (allCelebritiesFromDB) {
-      console.log("All celebrities", allCelebritiesFromDB);
-      res.render("celebrities/celebrities"),
-        {
-          allCelebrities: allCelebritiesFromDB,
-        };
+      console.log("All celebritiesssss", allCelebritiesFromDB);
+      res.render("celebrities/celebrities", {
+        allCelebrities: allCelebritiesFromDB,
+      })
     })
     .catch((err) => {
       console.log("oops", err);

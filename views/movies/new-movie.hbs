@@ -16,15 +16,16 @@
     <input type="text" name="plot" />
   </label>
 
-  <label for="cast">Cast</label>
+  <label>Cast
 
-  <select name="cast" id="cast" multiple>
-    {{#each allCelebrities}}
-      <option value="chosenCast">{{name}}</option>
-    {{/each}}
+    <select name="cast" multiple>
+      <option>coucou</option>
+      {{#each allCelebrities}}
+        <option value="{{_id}}">{{this.name}}</option>
+      {{/each}}
 
-  </select>
-
+    </select>
+  </label>
 
   <p>
     <button>Create a movie</button>
