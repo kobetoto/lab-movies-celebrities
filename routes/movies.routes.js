@@ -36,4 +36,18 @@ router.post("/movies/create", function (req, res, next) {
     });
 });
 
+router.get("/movies", function (req, res, next) {
+  Movie.find()
+    .then(function (allMoviesFromDB) {
+      console.log("All moviesssss", allMoviesFromDB);
+      res.render("movies/movies", {
+        allMovies: allMoviesFromDB,
+      })
+    })
+    .catch((err) => {
+      console.log("oops", err);
+      next(err);
+    });
+});
+
 module.exports = router;
